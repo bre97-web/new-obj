@@ -133,3 +133,43 @@ table th{
 .navbar input:checked ~ ul li a span{
     font-size: 14px;
 }
+
+/* new styles */
+* {
+    transition: all 0.15s;
+}
+#nav[type="closed"] {
+    width: 64px;
+}
+#nav[type="opend"] {
+    width: 192px;
+    padding: 0.75rem;
+}
+
+#nav[type="closed"] > ul {
+    align-items: center;
+}
+#nav[type="opend"] > div {
+    justify-content: start;
+}
+
+#nav[type="closed"] > ul > li span {
+    display: none;
+}
+
+#nav > ul > li a {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0.75rem;
+
+}
+
+
+:root {
+    --md-sys-color-shadow: transparent;
+}
+
+md-icon {
+    user-select: none;
+}
