@@ -2,84 +2,118 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.rg">
 
 <head>
-
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<script src="js/jquery-3.7.0.js"></script>
     <title>侧边展开导航栏</title>
+
     <!-- 引入字体图标 -->
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Google's Material-Symbols CDN -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <!-- Outer CSS -->
     <link rel="stylesheet" href="./css/25.css" th:href="@{/css/25.css}">
+    <!-- <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" -->
+        <!-- integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Outer JS-->
     <script src="js/jquery-3.7.0.js"></script>
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css"
-          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="./js/bundle.js"></script>
 
 </head>
 
 <body>
-    <div class="navbar">
-        <input type="checkbox" id="checkbox">
-        <label for="checkbox">
-            <i class="fa fa-bars" aria-hidden="true"></i>
-        </label>
-        <ul>
-            <li>
-                <!-- <img src="../images/1.png" alt=""> -->
-                <span>欢迎您！管理员</span>
-            </li>
-            <li>
-                <a href="javascript:void(0)">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                    <span>后台首页</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">
-                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                    <span>用户列表</span>
-                </a>
-            </li>
-        </ul>
-        <div class="main">
-            <div>
 
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <td>(编号)u_id</td>
-                    <td>(用户名)u_name</td>
-                    <td>(密码)u_pwd</td>
-					<td>修改</td>
-                </tr>
-                </thead>
-                <tbody id="gridId">
-                <tr>
-                    <td>未请求到数据</td>
-                </tr>
-                </tbody>
-				
-            </table>
+    <main class="flex flex-row w-full min-h-screen">
+        <nav id="nav" type="closed" class="bg-purple-100 text-black px-2 py-4">
+            <div class="flex justify-center my-2">
+                <md-standard-icon-button id="openNav">
+                    <md-icon>menu</md-icon>
+                </md-standard-icon-button>
             </div>
-			<script>
-                $.ajax({
-                    url: "http://localhost:8080/test",
-                    success: function (data) {
-                        if (data.length > 0) {
-                            $('#gridId').empty()
-                            for (let i = 0; i < 10; i++) {
-                                $('#gridId').append('<tr><td class="u_id">' + data[i].u_id + '</td><td>' + data[i].u_name + '</td><td>' + data[i].u_pwd + '</td><td><button class="delete">删除</button></td><td><button class="alter">修改</button></td></tr>');
-                            }
-							$(".delete").click(function(){
-								console.log("hello")
-							})
-                        }
-                    },
-                })
+            <ul id="navList"  class="flex flex-col item-center justify-center gap-2">
+                <li>
+                    <!-- <img src="../images/1.png" alt=""> -->
+                    <span class="text-xs">欢迎您！管理员</span>
+                </li>
+                <li>
+                    <a class="rounded-md p-2 relative">
+                        <md-ripple></md-ripple>
+                        <md-elevation></md-elevation>
+                        <md-icon>home</md-icon>
+                        <span class="text-xs">后台首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="rounded-md p-2 relative">
+                        <md-ripple></md-ripple>
+                        <md-elevation></md-elevation>
+                        <md-icon>manage_accounts</md-icon>
+                        <span class="text-xs">用户列表</span>
+                    </a>
+                </li>
+            </ul>
+            <script>
+                document.getElementById('openNav').onclick = () => {
+                    document.getElementById('nav').setAttribute(
+                        'type',
+                        document.getElementById('nav').getAttribute('type') === 'closed' ? 'opend' : 'closed'
+                    )
+                }
+            </script>
+        </nav>
 
-			</script>
+        <div class="border bg-purple-50 w-full">
+            <div class="p-4">
+    
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td>编号[u_id]</td>
+                        <td>用户名[u_name]</td>
+                        <td>密码[u_pwd]</td>
+                        <td>修改</td>
+                    </tr>
+                    </thead>
+                    <tbody id="gridId">
+                    <tr>
+                        <td>未请求到数据</td>
+                    </tr>
+                    </tbody>
+                    
+                </table>
+
+            </div>
         </div>
-		
-    </div>
+
+    </main>
+
+
+    <footer>
+
+    </footer>
+
+
+
+    <script>
+        $.ajax({
+            url: "http://localhost:8080/test",
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#gridId').empty()
+                    for (let i = 0; i < 10; i++) {
+                        $('#gridId').append('<tr><td class="u_id">' + data[i].u_id + '</td><td>' + data[i].u_name + '</td><td>' + data[i].u_pwd + '</td><td><button class="delete">删除</button></td><td><button class="alter">修改</button></td></tr>');
+                    }
+                    $(".delete").click(function () {
+                        console.log("hello")
+                    })
+                }
+            },
+        })
+
+    </script>
 </body>
 
 </html>
