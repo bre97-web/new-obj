@@ -6,10 +6,15 @@
 <mapper namespace="com.mapper.UserMapper">
     <!--    查询语句-->
     <select id="getlist" resultType="map">
-        select * from jizhangdb.user
+        select * from jzb_db.user
     </select>
 
-    <delete id="DeleteUserById">
+    <delete id="deleteUser">
         delete from user where u_id=#{u_id}
     </delete>
+
+    <insert id="addUser">
+    insert into user values (#{u_id},#{u_name},#{u_pwd})
+    </insert>
+
 </mapper>
