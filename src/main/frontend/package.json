@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.14",
     "@material/web": "^1.0.0-pre.13",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
+    "light-dark-switch": "^0.0.3",
     "lit": "^2.7.6",
     "material-symbols": "^0.9.0",
     "pinia": "^2.1.4",

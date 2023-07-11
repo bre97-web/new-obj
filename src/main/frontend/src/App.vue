@@ -1,10 +1,11 @@
 <template>
     <main class="flex flex-row min-h-screen relative">
-        <div class="fixed">
+        <nav class="fixed top-0 left-0">
             <NavigationRail :open="open" :setOpen="setOpen" :togglePanel="togglePanel"></NavigationRail>
-        </div>
-        
+        </nav>
+
         <main class="flex-grow" :class="open ? 'ml-44' : 'ml-20'">
+            <TopNavigation></TopNavigation>
             <div class="max-w-6xl mx-auto px-4">
                 <router-view v-slot="{ Component }">
                     <component :is="Component"></component>
@@ -40,6 +41,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import NavigationRail from './components/NavigationRail.vue'
+import TopNavigation from './components/TopNavigation.vue';
 
 const open = ref(false)
 const setOpen = (e: boolean) => {
