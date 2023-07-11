@@ -3,6 +3,17 @@
 @tailwind utilities;
 @tailwind variants;
 
+@layer base {
+    * {
+        /* @apply border; */
+    }
+    header {
+        @apply mt-8;
+    }
+    header + main {
+        @apply mt-16 space-y-8;
+    }
+}
 @layer components {
     
 }
