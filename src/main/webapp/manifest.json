@@ -1,6 +1,6 @@
 {
   "index.css": {
-    "file": "assets/index-d117f125.css",
+    "file": "assets/index-b377cdc3.css",
     "src": "index.css"
   },
   "index.html": {
@@ -10,9 +10,9 @@
       "assets/material-symbols-sharp-67518a01.woff2"
     ],
     "css": [
-      "assets/index-d117f125.css"
+      "assets/index-b377cdc3.css"
     ],
-    "file": "assets/index-fa688750.js",
+    "file": "assets/index-81ad1c14.js",
     "isEntry": true,
     "src": "index.html"
   },

@@ -80,7 +80,7 @@ const useUserStore = defineStore('user_store', {
         },
 
         edit(target: User, e: User) {
-            console.log(e);
+            console.log(target);
             
             axios.post('/api/alterUser', {
                 u_id: e.u_id,
