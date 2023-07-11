@@ -4,11 +4,11 @@
             <Display msg="用户管理"></Display>
         </header>
 
-        <main>
+        <main class="">
 
             <SearchInput></SearchInput>
 
-            <table class="rounded-xl border overflow-clip">
+            <table class="rounded-xl border overflow-clip w-full">
                 <thead class="bg-gray-50 border-b">
                     <tr class="font-semibold">
                         <td>编号</td>
@@ -52,6 +52,9 @@ type User = {
     u_pwd: string
 }
 
+/**
+ * 从服务器获取的数据，它不应该直接输出到DOM，请经过filter方法
+ */
 const data = ref<User[]>([
     {
         u_id: '00001 样例',
@@ -59,7 +62,13 @@ const data = ref<User[]>([
         u_pwd: '000ppp 样例'
     }
 ])
+// const filter = () => {
+//     data.value.filter(e => e.u_id.includes())
+// }
 
+// const search = reactive({
+//     keyword
+// })
 const SearchInput = () => (
     <input type="search" class="rounded-md px-4 py-2 outline-none focus:ring border dark:border-none hover:shadow-md" placeholder='Search'></input>
 )

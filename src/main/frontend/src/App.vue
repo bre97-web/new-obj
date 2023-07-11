@@ -1,5 +1,5 @@
 <template>
-    <main class="flex flex-row h-screen max-h-screen relative">
+    <main class="flex flex-row min-h-screen relative">
         <div class="fixed">
             <NavigationRail :open="open" :setOpen="setOpen" :togglePanel="togglePanel"></NavigationRail>
         </div>
