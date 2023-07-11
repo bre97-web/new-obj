@@ -20,13 +20,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  // clearScreen: true,
-  // base: '/new-obj',
-  // build: {
-  // emptyOutDir: true,
-  // outDir: '../../docs',
-  // sourcemap: true,
-  // manifest: true,
-  // minify: 'esbuild'
-  // }
+  clearScreen: true,
+  base: '/new-obj',
+  build: {
+  emptyOutDir: true,
+  outDir: '../../../docs',
+  sourcemap: true,
+  manifest: true,
+  minify: 'esbuild'
+  }
 })
