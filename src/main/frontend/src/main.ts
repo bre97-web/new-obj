@@ -24,4 +24,7 @@ const pinia = createPinia()
 import router from './router/index'
 
 const app = createApp(App)
-app.use(router).use(pinia).mount('#app')
+app
+.use(pinia)
+.use(router)
+.mount('#app')
