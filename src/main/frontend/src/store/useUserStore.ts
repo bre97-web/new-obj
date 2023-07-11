@@ -67,7 +67,8 @@ const useUserStore = defineStore('user_store', {
          * 移除指定的对象（包括服务器和本地）
          */
         remove(e: User) {
-
+            console.log(e);
+            
         }
     }
 })
