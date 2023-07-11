@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
 @CrossOrigin
+@org.springframework.stereotype.Controller
 public class Controller {
     @Autowired
     UserService userService;
@@ -20,6 +20,7 @@ public class Controller {
      * @return
      */
     @RequestMapping(value = "selectAll", method = RequestMethod.POST)
+    @ResponseBody
     public List<Map<String, Object>> test() {
         System.out.println("test");
         return userService.getlist();
@@ -30,6 +31,7 @@ public class Controller {
      * @param u_id
      */
     @RequestMapping(value = "deleteUser")
+    @ResponseBody
     public boolean deleteUser(int u_id) {
         System.out.println("delete +" + u_id);
         return userService.deleteUser(u_id);
@@ -42,6 +44,7 @@ public class Controller {
      * @return boole
      */
     @RequestMapping(value = "addUser")
+    @ResponseBody
     public boolean addUser(User user) {
         System.out.println("addUser  +" + user.toString());
         return userService.addUser(user);
@@ -54,6 +57,7 @@ public class Controller {
      * @return boolean
      */
     @RequestMapping(value = "alterUser")
+    @ResponseBody
     public boolean alterUser(User user) {
         System.out.println(user.toString());
         return userService.alterUser(user);

@@ -21,7 +21,8 @@ const useUserStore = defineStore('user_store', {
          */
         async request(): Promise<void> {
             try {
-                this.users = await axios.get('http://localhost:8080/getUsers')
+                this.users = await (await axios.post('/api/selectAll')).data
+                console.log(this.users);
             } catch {
                 this.users = [
                     {
@@ -47,7 +48,7 @@ const useUserStore = defineStore('user_store', {
          * 查找用户列表的每一个元素的ID、返回用户名、密码，三者任意一个属性包含了指定字符串的对象的数组
          */
         searchByAnyField(keyword: string): User[] {
-            return this.users.filter(e => e.u_id.includes(keyword) || e.u_name.includes(keyword) || e.u_pwd.includes(keyword))
+            return this.users.filter(e => e.u_id == keyword || e.u_name.includes(keyword) || e.u_pwd.includes(keyword))
         },
 
         /**
@@ -56,7 +57,9 @@ const useUserStore = defineStore('user_store', {
          */
         async refresh(): Promise<boolean> {
             try {
-                this.users = await axios.get('http://localhost:8080/getUsers')
+                this.users = await (await axios.post('/api/selectAll')).data
+                console.log(this.users);
+                
             } catch {
                 return false
             }
