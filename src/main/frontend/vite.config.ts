@@ -23,10 +23,10 @@ export default defineConfig({
   clearScreen: true,
   base: '/new-obj',
   build: {
-  emptyOutDir: true,
-  outDir: '../../../docs',
-  sourcemap: true,
-  manifest: true,
-  minify: 'esbuild'
+    emptyOutDir: true,
+    outDir: '../../../docs',
+    sourcemap: true,
+    manifest: true,
+    minify: 'esbuild'
   }
 })
