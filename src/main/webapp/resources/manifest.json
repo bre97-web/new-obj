@@ -1,0 +1,31 @@
+{
+  "index.css": {
+    "file": "assets/index-d117f125.css",
+    "src": "index.css"
+  },
+  "index.html": {
+    "assets": [
+      "assets/material-symbols-outlined-9d62d361.woff2",
+      "assets/material-symbols-rounded-b90b6827.woff2",
+      "assets/material-symbols-sharp-67518a01.woff2"
+    ],
+    "css": [
+      "assets/index-d117f125.css"
+    ],
+    "file": "assets/index-fa688750.js",
+    "isEntry": true,
+    "src": "index.html"
+  },
+  "node_modules/material-symbols/material-symbols-outlined.woff2": {
+    "file": "assets/material-symbols-outlined-9d62d361.woff2",
+    "src": "node_modules/material-symbols/material-symbols-outlined.woff2"
+  },
+  "node_modules/material-symbols/material-symbols-rounded.woff2": {
+    "file": "assets/material-symbols-rounded-b90b6827.woff2",
+    "src": "node_modules/material-symbols/material-symbols-rounded.woff2"
+  },
+  "node_modules/material-symbols/material-symbols-sharp.woff2": {
+    "file": "assets/material-symbols-sharp-67518a01.woff2",
+    "src": "node_modules/material-symbols/material-symbols-sharp.woff2"
+  }
+}

@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import path from 'node:path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,12 +22,27 @@ export default defineConfig({
     }
   },
   clearScreen: true,
-  base: '/new-obj',
+  // base: '/new-obj',
   build: {
-  emptyOutDir: true,
-  outDir: '../../../docs',
-  sourcemap: true,
-  manifest: true,
-  minify: 'esbuild'
-  }
+    emptyOutDir: true,
+    // to docs
+    // outDir: '../../../docs',
+    // to WEB-INF
+    outDir: '../webapp',
+    sourcemap: true,
+    manifest: true,
+    minify: 'esbuild'
+  },
+  server: {
+    host: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080/api',
+        changeOrigin: true,
+        ws: true,
+        rewrite: (path) => path.replace('/api', ""),
+        
+      }
+    }
+  },
 })

@@ -3,15 +3,13 @@ package com.controller;
 import com.pojo.User;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @org.springframework.stereotype.Controller
 public class Controller {
     @Autowired
@@ -21,7 +19,6 @@ public class Controller {
      * 返回数据库user表中全部数据
      * @return
      */
-    @CrossOrigin
     @RequestMapping(value = "selectAll", method = RequestMethod.POST)
     @ResponseBody
     public List<Map<String, Object>> test() {
