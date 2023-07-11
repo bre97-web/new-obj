@@ -3,16 +3,14 @@ package com.controller;
 import com.pojo.User;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@org.springframework.stereotype.Controller
+@RestController
+@CrossOrigin
 public class Controller {
     @Autowired
     UserService userService;
@@ -21,9 +19,7 @@ public class Controller {
      * 返回数据库user表中全部数据
      * @return
      */
-    @CrossOrigin
     @RequestMapping(value = "selectAll", method = RequestMethod.POST)
-    @ResponseBody
     public List<Map<String, Object>> test() {
         System.out.println("test");
         return userService.getlist();
@@ -34,7 +30,6 @@ public class Controller {
      * @param u_id
      */
     @RequestMapping(value = "deleteUser")
-    @ResponseBody
     public boolean deleteUser(int u_id) {
         System.out.println("delete +" + u_id);
         return userService.deleteUser(u_id);
@@ -47,7 +42,6 @@ public class Controller {
      * @return boole
      */
     @RequestMapping(value = "addUser")
-    @ResponseBody
     public boolean addUser(User user) {
         System.out.println("addUser  +" + user.toString());
         return userService.addUser(user);
@@ -60,7 +54,6 @@ public class Controller {
      * @return boolean
      */
     @RequestMapping(value = "alterUser")
-    @ResponseBody
     public boolean alterUser(User user) {
         System.out.println(user.toString());
         return userService.alterUser(user);
