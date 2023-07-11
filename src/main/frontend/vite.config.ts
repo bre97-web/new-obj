@@ -24,7 +24,10 @@ export default defineConfig({
   base: '/new-obj',
   build: {
   emptyOutDir: true,
-  outDir: '../../../docs',
+  // to docs
+  // outDir: '../../../docs',
+  // to WEB-INF
+  outDir: '../webapp',
   sourcemap: true,
   manifest: true,
   minify: 'esbuild'
