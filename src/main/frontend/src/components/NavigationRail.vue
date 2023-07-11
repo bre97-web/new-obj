@@ -1,19 +1,22 @@
 <template>
-    <nav class="bg-purple-100 flex flex-col justify-start px-4 py-2 h-screen" :class="props.open ? 'w-44 items-start' : 'w-20 items-center'">
-        <div class="flex justify-center my-2">
-            <md-standard-icon-button @click="props.togglePanel">
-                <md-icon>menu</md-icon>
-            </md-standard-icon-button>
+    <nav class="bg-[var(--md-sys-color-surface)] h-screen" :class="props.open ? 'w-44' : 'w-20'">
+        <div class="flex flex-col px-4" :class="props.open ? 'items-start' : 'items-center'">
+            <div class="flex justify-center items-center h-14">
+                <md-standard-icon-button @click="props.togglePanel">
+                    <md-icon>menu</md-icon>
+                </md-standard-icon-button>
+            </div>
+            <ul class="flex flex-col gap-2">
+                <li>
+                    <!-- <img src="../images/1.png" alt=""> -->
+                    <!-- <span class="text-xs">欢迎您！管理员</span> -->
+                </li>
+                <template v-for="e in routerList" :key="e.path">
+                    <NavigationButton :label="e.label" :path="e.path" :icon="e.icon"></NavigationButton>
+                </template>
+            </ul>
         </div>
-        <ul class="flex flex-col gap-2">
-            <li>
-                <!-- <img src="../images/1.png" alt=""> -->
-                <!-- <span class="text-xs">欢迎您！管理员</span> -->
-            </li>
-            <template v-for="e in routerList" :key="e.path">
-                <NavigationButton :label="e.label" :path="e.path" :icon="e.icon"></NavigationButton>
-            </template>
-        </ul>
+
     </nav>
 </template>
 
@@ -49,13 +52,16 @@ const routerList: NavButton[] = [
 
 const router = useRouter()
 
-const NavigationButton = ({ label, path, icon}: NavButton) => (
+
+const NavigationButton = ({ label, path, icon }: NavButton) => (
     <li class="overflow-clip rounded-[16px] max-w-min">
-        <md-fab label={props.open ? label : ''} onClick={() => router.push(path)}>
-            <md-icon slot="icon">{ icon }</md-icon>
+        <md-fab variant={router.currentRoute.value.path === path ? "primary" : "lowered"} label={props.open ? label : ''} onClick={() => router.push(path)}>
+            <md-icon slot="icon">{icon}</md-icon>
         </md-fab>
     </li>
 )
+
+
 
 
 const windowSize = reactive({
@@ -64,7 +70,7 @@ const windowSize = reactive({
 })
 const setWindowSize = () => {
     windowSize.width = document.body.clientWidth,
-    windowSize.height = document.body.clientHeight
+        windowSize.height = document.body.clientHeight
 }
 onMounted(() => {
     window.addEventListener('resize', setWindowSize)
@@ -73,9 +79,9 @@ onUnmounted(() => {
     window.removeEventListener('resize', setWindowSize)
 })
 watch(windowSize, () => {
-    if(windowSize.width >= 1280) {
+    if (windowSize.width >= 1280) {
         props.setOpen(true)
-    } else if(windowSize.width <= 640) {
+    } else if (windowSize.width <= 640) {
         props.setOpen(false)
     }
 })

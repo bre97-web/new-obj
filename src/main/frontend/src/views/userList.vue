@@ -6,9 +6,14 @@
 
         <main>
 
-            <SearchInput></SearchInput>
+            <div class="flex items-center justify-between">
+                <SearchInput></SearchInput>
 
-            <table class="rounded-xl border overflow-clip">
+                <RefreshButton></RefreshButton>
+
+            </div>
+
+            <table class="rounded-xl border overflow-clip w-full">
                 <thead class="bg-gray-50 border-b">
                     <tr class="font-semibold">
                         <td>编号</td>
@@ -19,7 +24,7 @@
                 </thead>
 
                 <tbody class="bg-gray-50/75 rounded-xl space-y-4">
-                    <tr v-for="e in data" :key="e.u_id">
+                    <tr v-for="e in filter" :key="e.u_id">
                         <td>{{ e.u_id }}</td>
                         <td>{{ e.u_name }}</td>
                         <td>{{ e.u_pwd }}</td>
@@ -44,28 +49,65 @@
 
 <script setup lang="tsx">
 import { Display } from '@/components/Text';
-import { ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
+import { useUserStore } from '@/store/useUserStore'
 
-type User = {
-    u_id: string,
-    u_name: string,
-    u_pwd: string
+
+const userStore = useUserStore()
+
+/**
+ * 获取用户数据
+ */
+onMounted(() => {
+    userStore.request()
+})
+
+const pending = ref<boolean>(false)
+const refresh = () => {
+    pending.value = true
+    userStore.refresh().then(e => {
+        if(e) {
+            console.log('refresh success');
+        } else {
+            console.log('refresh error');
+        }
+        pending.value = false
+    })
 }
 
-const data = ref<User[]>([
-    {
-        u_id: '00001 样例',
-        u_name: 'name 1 样例',
-        u_pwd: '000ppp 样例'
-    }
-])
+/**
+ * 不应该将userStore.getUsers直接输出到DOM，请经过filter方法
+ */
+const filter = computed(() => {
+    return search.keyword.length !== 0 ? userStore.searchByAnyField(search.keyword) : userStore.getUsers
+})
 
+const search = reactive({
+    keyword: ''
+})
+
+
+
+/**
+ * TSX Area
+ */
 const SearchInput = () => (
-    <input type="search" class="rounded-md px-4 py-2 outline-none focus:ring border dark:border-none hover:shadow-md" placeholder='Search'></input>
+    <input type="search" value={search.keyword} onInput={e => search.keyword = (e.target as HTMLInputElement).value} class="rounded-md px-4 py-2 outline-none focus:ring border dark:border-none hover:shadow-md" placeholder='Search'></input>
+)
+
+const RefreshButton = () => (
+    <md-tonal-button disabled={pending.value} onClick={refresh}>
+        {
+            !pending.value ? 
+                <md-icon slot="icon">refresh</md-icon> :
+                <md-icon slot="icon" class="rotate">sync</md-icon>
+        }
+        刷新
+    </md-tonal-button>
 )
 </script>
 
-<style scoped>
+<style >
 input {
     transition: all 0.15s;
 }
@@ -73,4 +115,5 @@ input {
 td {
     @apply px-4 py-2;
 }
+
 </style>
