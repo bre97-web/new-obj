@@ -5,12 +5,9 @@
         </header>
 
         <main>
-
             <div class="flex items-center justify-between">
                 <SearchInput></SearchInput>
-
                 <RefreshButton></RefreshButton>
-
             </div>
 
             <table class="rounded-xl border overflow-clip w-full">
@@ -22,7 +19,6 @@
                         <td>修改</td>
                     </tr>
                 </thead>
-
                 <tbody class="bg-gray-50/75 rounded-xl space-y-4">
                     <tr v-for="e in filter" :key="e.u_id">
                         <td>{{ e.u_id }}</td>
@@ -30,11 +26,14 @@
                         <td>{{ e.u_pwd }}</td>
                         <td>
                             <div>
-                                <md-standard-icon-button>
+                                <md-standard-icon-button @click="() => {
+                                    currentEditUser = e
+                                    setOpenDialog(true)
+                                }">
                                     <md-icon>edit</md-icon>
                                 </md-standard-icon-button>
 
-                                <md-standard-icon-button>
+                                <md-standard-icon-button @click="userStore.remove(e)">
                                     <md-icon>delete</md-icon>
                                 </md-standard-icon-button>
                             </div>
@@ -45,12 +44,17 @@
             </table>
         </main>
     </div>
+
+    <template v-if="currentEditUser != null">
+        <EditUserDialog :user="currentEditUser" :is-open-dialog="isOpenDialog" :close-dialog="closeDialog" :submit-dialog="submitDialog"></EditUserDialog>
+    </template>
 </template>
 
 <script setup lang="tsx">
 import { Display } from '@/components/Text';
 import { computed, onMounted, reactive, ref } from 'vue';
-import { useUserStore } from '@/store/useUserStore'
+import { User, useUserStore } from '@/store/useUserStore'
+import EditUserDialog from '@/components/EditUserDialog.vue';
 
 
 const userStore = useUserStore()
@@ -105,6 +109,23 @@ const RefreshButton = () => (
         刷新
     </md-tonal-button>
 )
+
+
+
+/**
+ * 编辑功能
+ */
+const currentEditUser = ref()
+const isOpenDialog = ref(false)
+const setOpenDialog = (e: boolean) => {
+    isOpenDialog.value = e
+}
+const submitDialog = (e: User) => {
+    userStore.edit(currentEditUser.value, e)
+}
+const closeDialog = () => {
+    setOpenDialog(false)
+}
 </script>
 
 <style >
