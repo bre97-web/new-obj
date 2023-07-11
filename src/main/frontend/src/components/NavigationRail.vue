@@ -1,10 +1,7 @@
 <template>
-    <nav 
-        class="bg-[var(--md-sys-color-surface)] flex flex-col justify-between px-4 py-2 h-screen"
-        :class="props.open ? 'w-44 items-start' : 'w-20 items-center'"
-    >
-        <div>
-            <div class="flex justify-center my-2">
+    <nav class="bg-[var(--md-sys-color-surface)] h-screen" :class="props.open ? 'w-44' : 'w-20'">
+        <div class="flex flex-col px-4" :class="props.open ? 'items-start' : 'items-center'">
+            <div class="flex justify-center items-center h-14">
                 <md-standard-icon-button @click="props.togglePanel">
                     <md-icon>menu</md-icon>
                 </md-standard-icon-button>
@@ -55,9 +52,10 @@ const routerList: NavButton[] = [
 
 const router = useRouter()
 
+
 const NavigationButton = ({ label, path, icon }: NavButton) => (
     <li class="overflow-clip rounded-[16px] max-w-min">
-        <md-fab label={props.open ? label : ''} onClick={() => router.push(path)}>
+        <md-fab variant={router.currentRoute.value.path === path ? "primary" : "lowered"} label={props.open ? label : ''} onClick={() => router.push(path)}>
             <md-icon slot="icon">{icon}</md-icon>
         </md-fab>
     </li>

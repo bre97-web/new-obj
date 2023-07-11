@@ -1,6 +1,6 @@
 <template>
-    <nav class="px-4 py-2 border-b ">
-        <nav class="flex justify-end">
+    <nav class="px-4 border-b">
+        <nav class="h-14 flex items-center justify-end">
 
             <Menu v-slot="{ open }">
                 <MenuButton as="template">
