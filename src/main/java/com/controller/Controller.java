@@ -56,9 +56,9 @@ public class Controller {
      *             u_pwd 修改后的pwd
      * @return boolean
      */
-    @RequestMapping(value = "alterUser")
+    @PostMapping("/alterUser")
     @ResponseBody
-    public boolean alterUser(User user) {
+    public boolean alterUser(@RequestBody User user) {
         System.out.println(user.toString());
         return userService.alterUser(user);
     }
