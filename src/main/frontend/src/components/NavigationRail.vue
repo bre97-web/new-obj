@@ -1,7 +1,7 @@
 <template>
     <nav class="bg-[var(--md-sys-color-surface)] h-screen" :class="props.open ? 'w-44' : 'w-20'">
-        <div class="flex flex-col justify-between px-4 pb-4 h-full" :class="props.open ? 'items-start' : 'items-center'">
-            <div>
+        <div class="flex flex-col justify-between px-4 pb-4 h-full">
+            <div class="flex flex-col" :class="props.open ? 'items-start' : 'items-center'">
                 <div class="flex justify-center items-center h-14">
                     <md-standard-icon-button @click="props.togglePanel">
                         <md-icon>menu</md-icon>
