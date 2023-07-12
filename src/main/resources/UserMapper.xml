@@ -6,7 +6,7 @@
 <mapper namespace="com.mapper.UserMapper">
     <!--    查询语句-->
     <select id="getlist" resultType="map">
-        select * from newobj.user
+        select * from user
     </select>
 
     <delete id="deleteUser">
