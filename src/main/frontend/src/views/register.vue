@@ -2,8 +2,7 @@
     <div>
         <header>
             <Display msg="注册"></Display>
-            <p class="text-xs">已经拥有账户了？前往<a @click="router.push('/login')"
-                    class="text-blue-500 hover:underline underline-offset-2">登录</a>。</p>
+            <p class="text-xs">已经拥有账户了？前往<a @click="router.push('/login')">登录</a>。</p>
         </header>
 
         <main>
@@ -47,7 +46,9 @@
                 </div>
 
                 <div v-if="registerActive.isRegisterError" class="text-[var(--md-sys-color-error)] text-right text-xs">
-                    似乎出现了意外
+                    <p type="error">
+                        似乎出现了意外
+                    </p>
                 </div>
             </form>
         </main>

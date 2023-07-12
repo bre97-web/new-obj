@@ -2,11 +2,6 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 /**
- * Others components
- */
-// import 'light-dark-switch'
-
-/**
  * Material about
  */
 import 'material-symbols'
