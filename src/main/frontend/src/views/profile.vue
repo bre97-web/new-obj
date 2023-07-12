@@ -12,7 +12,7 @@
             </template>
             <template v-else>
                 <div>
-                    欢迎
+                    欢迎, {{ account.getUser.name }}
                 </div>
                 <div>
                     <md-text-button @click="account.logout">

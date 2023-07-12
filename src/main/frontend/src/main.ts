@@ -12,6 +12,7 @@ import App from './App.vue'
 import 'material-symbols'
 import './assets/material-web'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 /**
  * TailwindCSS
@@ -22,6 +23,7 @@ import './assets/index.css'
  * Store
  */
 const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 
 /**
  * Router
