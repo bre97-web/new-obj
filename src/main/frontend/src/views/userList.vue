@@ -121,6 +121,7 @@ const setOpenDialog = (e: boolean) => {
     isOpenDialog.value = e
 }
 const submitDialog = (e: User) => {
+    closeDialog()
     userStore.edit(currentEditUser.value, e)
 }
 const closeDialog = () => {
