@@ -1,7 +1,11 @@
 <template>
     <md-standard-icon-button @click="toggleDark">
-        <md-icon>light_mode</md-icon>
-        <!-- <md-icon>dark_mode</md-icon> -->
+        <template v-if="!isDark">
+            <md-icon>light_mode</md-icon>
+        </template>
+        <template v-else>
+            <md-icon>dark_mode</md-icon>
+        </template>
     </md-standard-icon-button>
 </template>
 

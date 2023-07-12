@@ -57,7 +57,7 @@
         --md-sys-color-error-container: #da342e;
         --md-sys-color-on-error-container: #ffffff;
     }
-    :root dark {
+    html.dark  {
         --md-sys-color-background: #101510;
         --md-sys-color-on-background: #e0e4dc;
         --md-sys-color-surface: #101510;
