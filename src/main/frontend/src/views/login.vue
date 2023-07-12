@@ -8,15 +8,15 @@
         <main>
             <form>
                 <md-outlined-text-field 
-                    :error="userActive.isLoginError"
-                    v-model="user.phone"
+                    :error="loginActive.isLoginError"
+                    v-model="user.get().u_id"
                     label="手机号"
                 >
                     <md-icon slot="leadingicon">phone</md-icon>
                 </md-outlined-text-field>
                 <md-outlined-text-field
-                    :error="userActive.isLoginError"
-                    v-model="user.password"
+                    :error="loginActive.isLoginError"
+                    v-model="user.get().u_pwd"
                     maxlength="255"
                     type="password"
                     label="密码"
@@ -26,8 +26,8 @@
 
                 <div class="flex justify-end gap-2">
                     <md-text-button type="reset">重置</md-text-button>
-                    <md-filled-button @click="submit" :disabled="!userActive.isPass()">
-                        <template v-if="loginPendding">
+                    <md-filled-button @click="submit" :disabled="!loginActive.isPass()">
+                        <template v-if="loginActive.loginPendding">
                             <md-icon slot="icon" class="rotate">cached</md-icon>
                         </template>
                         <template v-else>
@@ -37,7 +37,7 @@
                     </md-filled-button>
                 </div>
 
-                <div v-if="userActive.isLoginError" class="text-[var(--md-sys-color-error)] text-right text-xs">
+                <div v-if="loginActive.isLoginError" class="text-[var(--md-sys-color-error)] text-right text-xs">
                     账户信息不匹配
                 </div>
             </form>
@@ -47,41 +47,38 @@
 
 <script setup lang="ts">
 import { Display } from '@/components/Text';
+import { useUser } from '@/hooks/useUser';
 import { useAccountStore } from '@/store/useAccountStore';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
 const account = useAccountStore()
-const user = reactive({
-    phone: '',
-    // name: '',
-    password: ''
-})
+const user = useUser()
+user.setName('null')
 
-const userActive = reactive({
-    isNotNull: () => user.phone.length > 0 && user.password.length > 0,
-    isPass: () => userActive.isNotNull(),
-    isLoginError: false
+const loginActive = reactive({
+    isPass: () => user.isNotNull(),
+    isLoginError: false,
+    loginPendding: false,
 })
 
 const router = useRouter()
 
-const loginPendding = ref(false)
 const submit = async () => {
-    loginPendding.value = true
+    loginActive.loginPendding = true
     let isSuccess = await account.login({
-        u_id: parseInt(user.phone),
-        u_pwd: user.password,
+        u_id: user.get().u_id,
+        u_pwd: user.get().u_pwd,
     })
 
-    loginPendding.value = false
+    loginActive.loginPendding = false
 
     if (isSuccess) {
         account.isLogin = true
         router.push('/')
     }
 
-    userActive.isLoginError = true
+    loginActive.isLoginError = true
 }
 </script>
 

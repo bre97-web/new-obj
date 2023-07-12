@@ -16,7 +16,7 @@ const useAccountStore = defineStore('account_store', {
         getIsLogin: (s) => s.isLogin,
     },
     actions: {
-        async isExist(id: string) {
+        async isExist(id: number) {
             return await axios.get('/api/selectUserById', {
                 params: {
                     u_id: id
