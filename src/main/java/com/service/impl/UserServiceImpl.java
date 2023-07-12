@@ -72,5 +72,10 @@ public class UserServiceImpl implements UserService {
         return this.userMapper.selectUserByAllField(user);
     }
 
+    @Override
+    public Map<String,Object>  login(int u_id) {
+        return userMapper.login(u_id);
+    }
+
 
 }
