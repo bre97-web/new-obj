@@ -12,4 +12,6 @@ public interface UserService {
     boolean alterUser(User user);
 
     boolean addUser(User user);
+
+    boolean selectUserById(int u_id);
 }

@@ -60,5 +60,11 @@ public class UserServiceImpl implements UserService {
         return flag;
     }
 
+    @Override
+    public boolean selectUserById(int u_id) {
+        boolean flag = userMapper.selectUserById(u_id)>0;
+        return flag;
+    }
+
 
 }

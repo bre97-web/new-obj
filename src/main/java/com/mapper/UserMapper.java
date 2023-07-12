@@ -12,5 +12,5 @@ public interface UserMapper {
 
     int addUser(User user);
 
-
+    int selectUserById(int u_id);
 }
