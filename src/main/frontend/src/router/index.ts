@@ -4,6 +4,7 @@ import index from '../views/index.vue'
 import userlist from '../views/userList.vue'
 import register from '../views/register.vue'
 import login from '../views/login.vue'
+import profile from '@/views/profile.vue'
 
 const routes = [
     {
@@ -21,6 +22,10 @@ const routes = [
     {
         path: '/register',
         component: register
+    },
+    {
+        path: '/profile',
+        component: profile
     },
 
 ]

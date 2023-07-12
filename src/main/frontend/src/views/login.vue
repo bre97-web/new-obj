@@ -77,6 +77,7 @@ const submit = async () => {
     loginPendding.value = false
 
     if (isSuccess) {
+        account.isLogin = true
         router.push('/')
     }
 

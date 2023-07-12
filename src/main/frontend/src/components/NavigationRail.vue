@@ -50,7 +50,7 @@ const routerList: NavButton[] = [
     },
     {
         label: '个人中心',
-        path: '/login',
+        path: '/profile',
         icon: 'person',
     },
 ]
