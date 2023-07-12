@@ -1,3 +1,4 @@
+import { reactive } from "vue"
 
 type User = {
     u_id: number,
@@ -7,11 +8,11 @@ type User = {
 type Users = User[]
 
 function useUser(id: number = 0, name: string = '', password: string = '') {
-    const target: User = {
+    const target: User = reactive({
         u_id: id,
         u_name: name,
         u_pwd: password
-    }
+    })
 
     const get = (): User => target
     const set = (e: User): void => {
@@ -29,12 +30,21 @@ function useUser(id: number = 0, name: string = '', password: string = '') {
         target.u_pwd = e
     }
 
+    const isNotNull = (): boolean => {
+        return target.u_id != null && target.u_id != undefined && target.u_name.length !== 0 && target.u_pwd.length !== 0
+    }
+    const isValid = (e: any) => {
+        return e != null && e != undefined && e != ''
+    }
+
     return {
         get,
         set,
         setId,
         setName,
-        setPassword
+        setPassword,
+        isNotNull,
+        isValid
     }
 }
 
