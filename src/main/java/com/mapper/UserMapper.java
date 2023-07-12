@@ -14,4 +14,5 @@ public interface UserMapper {
 
     Integer selectUserById(int u_id);
     public List<Map<String, User>> selectUserByAllField(User user);
+    Map<String,Object> login(int u_id);
 }
