@@ -2,12 +2,15 @@ package com.controller;
 
 import com.pojo.User;
 import com.service.UserService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
 @CrossOrigin
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -36,11 +39,17 @@ public class Controller {
      * 返回类型:boolean
      * 用途:根据id查找用户
      */
-    @GetMapping("selectUserById")
+    @GetMapping(value = "selectUserById", params = "u_id")
     @ResponseBody
-    public boolean selectUserById(int u_id){
+    public Boolean selectUserById(@RequestParam int u_id){
         System.out.println("select:"+u_id);
         return userService.selectUserById(u_id);
+    }
+
+    @PostMapping("/selectUserByAllField")
+    @ResponseBody
+    public List<Map<String, User>> findUserByAllField(@RequestBody User user) {
+        return this.userService.selectUserByAllField(user);
     }
 
     /**
@@ -66,9 +75,9 @@ public class Controller {
      * 用途:添加一条记录
      * 示例:http://localhost:8080/addUser?u_id=?&u_name=?&u_pwd=?
      */
-    @RequestMapping(value = "addUser")
+    @PostMapping("/addUser")
     @ResponseBody
-    public boolean addUser(User user) {
+    public boolean addUser(@RequestBody User user) {
         System.out.println("addUser  +" + user.toString());
         return userService.addUser(user);
     }

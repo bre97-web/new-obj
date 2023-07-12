@@ -7,13 +7,38 @@
 
         <main>
             <form>
-                <md-outlined-text-field v-model="user.phone" maxlength="11" type="phone" label="手机号"></md-outlined-text-field>
-                <md-outlined-text-field v-model="user.name" maxlength="255" label="用户名"></md-outlined-text-field>
-                <md-outlined-text-field v-model="user.password" maxlength="255" type="password" label="密码"></md-outlined-text-field>
+                <md-outlined-text-field 
+                    :error="userActive.isLoginError"
+                    v-model="user.phone"
+                    label="手机号"
+                >
+                    <md-icon slot="leadingicon">phone</md-icon>
+                </md-outlined-text-field>
+                <md-outlined-text-field
+                    :error="userActive.isLoginError"
+                    v-model="user.password"
+                    maxlength="255"
+                    type="password"
+                    label="密码"
+                >
+                    <md-icon slot="leadingicon">password</md-icon>
+                </md-outlined-text-field>
 
                 <div class="flex justify-end gap-2">
                     <md-text-button type="reset">重置</md-text-button>
-                    <md-filled-button>提交</md-filled-button>
+                    <md-filled-button @click="submit" :disabled="!userActive.isPass()">
+                        <template v-if="loginPendding">
+                            <md-icon slot="icon" class="rotate">cached</md-icon>
+                        </template>
+                        <template v-else>
+                            <md-icon slot="icon">input</md-icon>
+                        </template>
+                        提交
+                    </md-filled-button>
+                </div>
+
+                <div v-if="userActive.isLoginError" class="text-[var(--md-sys-color-error)] text-right text-xs">
+                    账户信息不匹配
                 </div>
             </form>
         </main>
@@ -22,16 +47,41 @@
 
 <script setup lang="ts">
 import { Display } from '@/components/Text';
-import { reactive } from 'vue';
+import { useAccountStore } from '@/store/useAccountStore';
+import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
+const account = useAccountStore()
 const user = reactive({
     phone: '',
-    name: '',
+    // name: '',
     password: ''
 })
 
+const userActive = reactive({
+    isNotNull: () => user.phone.length > 0 && user.password.length > 0,
+    isPass: () => userActive.isNotNull(),
+    isLoginError: false
+})
+
 const router = useRouter()
+
+const loginPendding = ref(false)
+const submit = async () => {
+    loginPendding.value = true
+    let isSuccess = await account.login({
+        u_id: parseInt(user.phone),
+        u_pwd: user.password,
+    })
+
+    loginPendding.value = false
+
+    if (isSuccess) {
+        router.push('/')
+    }
+
+    userActive.isLoginError = true
+}
 </script>
 
 <style scoped>

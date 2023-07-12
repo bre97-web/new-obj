@@ -49,7 +49,7 @@ const routerList: NavButton[] = [
         icon: 'manage_accounts',
     },
     {
-        label: '登录',
+        label: '个人中心',
         path: '/login',
         icon: 'person',
     },
