@@ -14,6 +14,12 @@
                 <div>
                     欢迎
                 </div>
+                <div>
+                    <md-text-button @click="account.logout">
+                        <md-icon slot="icon">logout</md-icon>
+                        退出登录
+                    </md-text-button>
+                </div>
             </template>
         </main>
     </div>

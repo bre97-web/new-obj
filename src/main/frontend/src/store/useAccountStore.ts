@@ -53,6 +53,9 @@ const useAccountStore = defineStore('account_store', {
             }
             return false
         },
+        logout() {
+            this.isLogin = false
+        },
     }
 })
 
