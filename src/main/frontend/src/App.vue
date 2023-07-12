@@ -12,28 +12,6 @@
                 </router-view>
             </div>
         </main>
-        <!-- <div class="border bg-purple-50 w-full">
-            <div class="p-4">
-    
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <td>编号[u_id]</td>
-                        <td>用户名[u_name]</td>
-                        <td>密码[u_pwd]</td>
-                        <td>修改</td>
-                    </tr>
-                    </thead>
-                    <tbody id="gridId">
-                    <tr>
-                        <td>未请求到数据</td>
-                    </tr>
-                    </tbody>
-                    
-                </table>
-
-            </div>
-        </div> -->
 
     </main>
 </template>
