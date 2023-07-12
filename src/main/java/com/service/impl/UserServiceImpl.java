@@ -4,6 +4,7 @@ import com.mapper.UserMapper;
 import com.mybatisutil.MybatisUtil;
 import com.pojo.User;
 import com.service.UserService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -62,8 +64,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean selectUserById(int u_id) {
-        boolean flag = userMapper.selectUserById(u_id)>0;
-        return flag;
+        return !Objects.isNull(userMapper.selectUserById(u_id));
+    }
+
+    @Override
+    public List<Map<String, User>> selectUserByAllField(User user) {
+        return this.userMapper.selectUserByAllField(user);
     }
 
 

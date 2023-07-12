@@ -1,6 +1,7 @@
 package com.service;
 
 import com.pojo.User;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.List;
 import java.util.Map;
@@ -14,4 +15,6 @@ public interface UserService {
     boolean addUser(User user);
 
     boolean selectUserById(int u_id);
+
+    public List<Map<String, User>> selectUserByAllField(User user);
 }

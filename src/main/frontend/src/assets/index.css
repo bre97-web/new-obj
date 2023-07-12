@@ -8,10 +8,14 @@
         /* @apply border; */
     }
     header {
-        @apply mt-8;
+        @apply mt-8 space-y-4;
     }
     header + main {
         @apply mt-16 space-y-8;
+    }
+
+    form {
+        @apply flex flex-col gap-2 max-w-md;
     }
 
     :root {

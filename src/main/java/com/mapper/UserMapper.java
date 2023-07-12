@@ -12,5 +12,6 @@ public interface UserMapper {
 
     int addUser(User user);
 
-    int selectUserById(int u_id);
+    Integer selectUserById(int u_id);
+    public List<Map<String, User>> selectUserByAllField(User user);
 }

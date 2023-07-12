@@ -5,3 +5,8 @@ export const Display = ({ msg }: { msg: string }) => (
     </h1>
 )
 
+export const Headline = ({ msg }: { msg: string }) => {
+    <p class="text-xl text-base">
+        { msg }
+    </p>
+}

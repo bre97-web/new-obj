@@ -48,6 +48,11 @@ const routerList: NavButton[] = [
         path: '/userlist',
         icon: 'manage_accounts',
     },
+    {
+        label: '个人中心',
+        path: '/profile',
+        icon: 'person',
+    },
 ]
 
 const router = useRouter()
@@ -55,7 +60,7 @@ const router = useRouter()
 
 const NavigationButton = ({ label, path, icon }: NavButton) => (
     <li class="overflow-clip rounded-[16px] max-w-min">
-        <md-fab variant={router.currentRoute.value.path === path ? "primary" : "lowered"} label={props.open ? label : ''} onClick={() => router.push(path)}>
+        <md-fab class={props.open ? "w-32" : "w-14"} variant={router.currentRoute.value.path === path ? "primary" : "lowered"} label={props.open ? label : ''} onClick={() => router.push(path)}>
             <md-icon slot="icon">{icon}</md-icon>
         </md-fab>
     </li>
