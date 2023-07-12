@@ -2,7 +2,7 @@
     <div>
         <header>
             <Display msg="登录"></Display>
-            <p class="text-xs">还没有账户？现在<a @click="router.push('/register')" class="text-blue-500 hover:underline underline-offset-2">创建</a>一个。</p>
+            <p class="text-xs">还没有账户？现在<a @click="router.push('/register')">创建</a>一个。</p>
         </header>
 
         <main>
@@ -38,7 +38,9 @@
                 </div>
 
                 <div v-if="loginActive.isLoginError" class="text-[var(--md-sys-color-error)] text-right text-xs">
-                    账户信息不匹配
+                    <p type="error">
+                        账户信息不匹配
+                    </p>
                 </div>
             </form>
         </main>

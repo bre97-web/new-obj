@@ -4,7 +4,7 @@
             <NavigationRail :open="open" :setOpen="setOpen" :togglePanel="togglePanel"></NavigationRail>
         </nav>
 
-        <main class="flex-grow" :class="open ? 'ml-44' : 'ml-20'">
+        <main class="flex-grow bg-[var(--md-sys-color-surface-container-low)]" :class="open ? 'ml-44' : 'ml-20'">
             <TopNavigation></TopNavigation>
             <div class="max-w-6xl mx-auto px-4">
                 <router-view v-slot="{ Component }">
