@@ -17,4 +17,8 @@
     insert into user values (#{u_id},#{u_name},#{u_pwd})
     </insert>
 
+    <select id="selectUserById" resultType="int">
+        select * from user where u_id=#{u_id}
+    </select>
+
 </mapper>

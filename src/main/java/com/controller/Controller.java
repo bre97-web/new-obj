@@ -3,10 +3,7 @@ package com.controller;
 import com.pojo.User;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +28,19 @@ public class Controller {
     public List<Map<String, Object>> test() {
         System.out.println("test");
         return userService.getlist();
+    }
+    /**
+     * 接口名 :selectUserById
+     * 请求方式:get
+     * 需要参数:u_id
+     * 返回类型:boolean
+     * 用途:根据id查找用户
+     */
+    @GetMapping("selectUserById")
+    @ResponseBody
+    public boolean selectUserById(int u_id){
+        System.out.println("select:"+u_id);
+        return userService.selectUserById(u_id);
     }
 
     /**
