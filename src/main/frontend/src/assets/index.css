@@ -49,7 +49,7 @@
     }
 
     input {
-        @apply bg-[var(--md-sys-color-surface-container-highest)] text-[var(--md-sys-color-on-surface)];
+        @apply bg-[var(--md-sys-color-surface-container-low)] text-[var(--md-sys-color-on-surface)];
     }
 
     :root {
