@@ -1,9 +1,9 @@
 <template>
-    <nav class="flex flex-row items-center justify-between pr-4 bg-[var(--md-sys-color-background)]">
+    <nav class="flex flex-row items-center justify-between px-4 py-2 bg-[var(--md-sys-color-background)]">
 
         <Title></Title>
         
-        <nav class="h-14 flex items-center justify-end">
+        <nav class="flex items-center justify-end">
             <Menu v-slot="{ open }">
                 <MenuButton as="template">
                     <md-standard-icon-button>

@@ -1,32 +1,25 @@
 <template>
-    <div class="flex items-start justify-start w-full bg-[var(--md-sys-color-background)] h-[3000px]">
-        <!-- <nav class="fixed top-0 left-0"> -->
-        <nav>
-            <NavigationRail :open="open" :setOpen="setOpen" :togglePanel="togglePanel"></NavigationRail>
+    <div class="relative flex flex-col w-full bg-[var(--md-sys-color-background)] h-screen max-h-screen">
+        <nav ref="topNavigationRef" class="sticky top-0 z-50 w-full">
+            <TopNavigation></TopNavigation>
         </nav>
-        
-        <main class="flex-grow">
-            <nav>
-                <TopNavigation></TopNavigation>
-            </nav>
-            <div class="rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] h-full">
-                <router-view v-slot="{ Component }">
-                    <component :is="Component"></component>
-                </router-view>
-            </div>
-            
-        </main>
-
-        <aside>
-
-        </aside>
-
-</div>
-
+        <div class="relative flex h-full">
+            <NavigationRail :open="open" :setOpen="setOpen" :togglePanel="togglePanel"></NavigationRail>
+            <main class="relative flex-grow mr-2">
+                <div class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 overflow-y-scroll" :style="mainAvalidHeight">
+                    <router-view v-slot="{ Component }">
+                        <component :is="Component"></component>
+                    </router-view>
+                </div>
+                <footer></footer>
+            </main>
+            <aside></aside>
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import NavigationRail from './components/NavigationRail.vue'
 import TopNavigation from './components/TopNavigation.vue';
 
@@ -37,8 +30,28 @@ const setOpen = (e: boolean) => {
 const togglePanel = () => {
     open.value = !open.value
 }
+
+
+/**
+ * 控制main的元素高度
+ */
+const topNavigationRef = ref<HTMLElement>()
+var innerHeight = ref(window.innerHeight)
+const updateInnerHeight = () => {
+    innerHeight.value = window.innerHeight
+}
+onMounted(() => {
+    window.addEventListener('resize', updateInnerHeight)
+})
+onUnmounted(() => {
+    window.removeEventListener('resize', updateInnerHeight)
+})
+const mainAvalidHeight = computed(() => {
+    if (topNavigationRef.value == undefined) {
+        return ''
+    }
+    return 'height:' + (innerHeight.value - topNavigationRef.value.clientHeight - 16) + 'px'
+})
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

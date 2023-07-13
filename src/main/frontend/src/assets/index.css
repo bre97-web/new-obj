@@ -4,6 +4,9 @@
 @tailwind variants;
 
 @layer base {
+    ::-webkit-scrollbar {
+        display: none;
+    }
     * {
         /* @apply border; */
     }
