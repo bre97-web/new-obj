@@ -8,10 +8,10 @@
         /* @apply border; */
     }
     header {
-        @apply mt-8 space-y-4;
+        @apply space-y-4;
     }
     header + main {
-        @apply mt-16 space-y-8;
+        @apply space-y-8;
     }
 
     form {
