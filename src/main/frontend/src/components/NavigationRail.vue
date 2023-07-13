@@ -1,14 +1,24 @@
 <template>
-    <nav class="bg-[var(--md-sys-color-surface)] h-full" :class="navStore.isOpen ? 'w-44' : 'w-20'">
-        <div class="flex flex-col justify-between px-4 pb-4 h-full">
-            <div class="flex flex-col" :class="navStore.isOpen ? 'items-start' : 'items-center'">
-                <ul class="flex flex-col gap-2">
+    <nav class="relative bg-[var(--md-sys-color-surface)] h-full" :class="navStore.isOpen ? 'w-44' : 'w-20'">
+        <div class="relative flex flex-col justify-between px-3 pb-4 h-full">
+            <div>
+                <ul class="relative flex flex-col gap-2 w-full">
                     <template v-for="e in routerList" :key="e.path">
-                        <NavigationButton :label="e.label" :path="e.path" :icon="e.icon"></NavigationButton>
+                        <li
+                            :class="{'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)]': router.currentRoute.value.path === e.path}"
+                            class="rounded-[16px] relative w-full h-14"
+                            @click="() => router.push(e.path)"
+                        >
+                            <md-ripple></md-ripple>
+                            <div class="flex items-center h-full rounded-xl" :class="navStore.isOpen ? 'justify-start gap-2 pl-6' : 'justify-center'">
+                                <md-icon :class="{'text-[var(--md-sys-color-primary)]': router.currentRoute.value.path !== e.path}">{{ e.icon }}</md-icon>
+                                <h1 :class="{'text-[var(--md-sys-color-on-primary-container)]': router.currentRoute.value.path === e.path}" class="text-sm" v-show="navStore.isOpen">{{ e.label }}</h1>
+                            </div>
+                        </li>
                     </template>
                 </ul>
             </div>
-            
+
             <div>
                 <DarkSwitch></DarkSwitch>
             </div>
@@ -29,7 +39,7 @@ type NavButton = {
 }
 const routerList: NavButton[] = [
     {
-        label: '后台首页',
+        label: '首页',
         path: '/',
         icon: 'home',
     },
@@ -48,15 +58,6 @@ const routerList: NavButton[] = [
 const router = useRouter()
 
 const navStore = useNavigationRailStore()
-
-const NavigationButton = ({ label, path, icon }: NavButton) => (
-    <li class="overflow-clip rounded-[16px] max-w-min">
-        <md-fab class={navStore.isOpen ? "w-32" : "w-14"} variant={router.currentRoute.value.path === path ? "primary" : "lowered"} label={navStore.isOpen ? label : ''} onClick={() => router.push(path)}>
-            <md-icon slot="icon">{icon}</md-icon>
-        </md-fab>
-    </li>
-)
-
 onMounted(() => {
     navStore.watchWindowSizeAndSetWindowSize()
 })
@@ -66,7 +67,22 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-nav {
+nav,
+li {
     transition: all 0.15s;
+}
+li h1 {
+    animation: opacityFromZeroToFull 0.5s;
+    opacity: 1;
+}
+@keyframes opacityFromZeroToFull {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+* {
+    @apply select-none;
 }
 </style>
