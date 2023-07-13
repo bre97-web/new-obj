@@ -60,7 +60,6 @@ public class Controller {
      */
     @PostMapping(value = {"/findOneByIdAndPassword", "/login"})
     public User findOneByIdAndPassword(@RequestBody User user) {
-        System.out.println(user);
         return this.userService.findOneByIdAndPassword(user.getU_id(), user.getU_pwd());
     }
 
