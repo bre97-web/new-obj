@@ -1,5 +1,5 @@
 <template>
-    <div class="h-[3000px]">
+    <div>
         <header>
             <Display msg="用户管理"></Display>
         </header>
