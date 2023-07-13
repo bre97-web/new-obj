@@ -1,6 +1,12 @@
+import { type } from "os";
 import { defineStore } from "pinia";
 import { onMounted, onUnmounted, reactive, ref, watch } from "vue";
 
+type NavButton = {
+    label: string,
+    path: string,
+    icon: string
+}
 
 const useNavigationRailStore = defineStore('navigationrail_store', () => {
     const isOpen = ref(false)
@@ -43,4 +49,5 @@ const useNavigationRailStore = defineStore('navigationrail_store', () => {
     }
 })
 
+export type { NavButton }
 export { useNavigationRailStore }

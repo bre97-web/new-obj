@@ -4,17 +4,7 @@
             <div>
                 <ul class="relative flex flex-col gap-2 w-full">
                     <template v-for="e in routerList" :key="e.path">
-                        <li
-                            :class="{'bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)]': router.currentRoute.value.path === e.path}"
-                            class="rounded-[16px] relative w-full h-14"
-                            @click="() => router.push(e.path)"
-                        >
-                            <md-ripple></md-ripple>
-                            <div class="flex items-center h-full rounded-xl" :class="navStore.isOpen ? 'justify-start gap-2 pl-6' : 'justify-center'">
-                                <md-icon :class="{'text-[var(--md-sys-color-primary)]': router.currentRoute.value.path !== e.path}">{{ e.icon }}</md-icon>
-                                <h1 :class="{'text-[var(--md-sys-color-on-primary-container)]': router.currentRoute.value.path === e.path}" class="text-sm" v-show="navStore.isOpen">{{ e.label }}</h1>
-                            </div>
-                        </li>
+                        <NavigationRailButton :router-item="e"></NavigationRailButton>
                     </template>
                 </ul>
             </div>
@@ -27,16 +17,14 @@
 </template>
 
 <script setup lang="tsx">
-import { useRouter } from 'vue-router';
 import DarkSwitch from './DarkSwitch.vue';
-import { useNavigationRailStore } from '@/store/useNavigationRail';
+import { NavButton, useNavigationRailStore } from '@/store/useNavigationRail';
 import { onMounted, onUnmounted } from 'vue';
+import NavigationRailButton from '@/components/NavigationRailButton.vue'
 
-type NavButton = {
-    label: string,
-    path: string,
-    icon: string
-}
+/**
+ * 用于按钮的路由表
+ */
 const routerList: NavButton[] = [
     {
         label: '首页',
@@ -54,8 +42,6 @@ const routerList: NavButton[] = [
         icon: 'person',
     },
 ]
-
-const router = useRouter()
 
 const navStore = useNavigationRailStore()
 onMounted(() => {
