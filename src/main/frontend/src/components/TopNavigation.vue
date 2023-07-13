@@ -1,5 +1,5 @@
 <template>
-    <nav class="flex flex-row justify-between px-4 bg-[var(--md-sys-color-background)]">
+    <nav class="flex flex-row items-center justify-between pr-4 bg-[var(--md-sys-color-background)]">
 
         <Title></Title>
         

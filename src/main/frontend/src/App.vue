@@ -1,21 +1,28 @@
 <template>
-
-    <header>
-        <TopNavigation></TopNavigation>
-    </header>
-
-    <main class="flex flex-col h-screen relative bg-[var(--md-sys-color-background)]" :class="open ? 'ml-44' : 'ml-20'">
-        <div class="rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] h-full m-2 p-4">
-            <router-view v-slot="{ Component }">
-                <component :is="Component"></component>
-            </router-view>
-        </div>
+    <div class="flex items-start justify-start w-full bg-[var(--md-sys-color-background)] h-[3000px]">
+        <!-- <nav class="fixed top-0 left-0"> -->
+        <nav>
+            <NavigationRail :open="open" :setOpen="setOpen" :togglePanel="togglePanel"></NavigationRail>
+        </nav>
         
-    </main>
+        <main class="flex-grow">
+            <nav>
+                <TopNavigation></TopNavigation>
+            </nav>
+            <div class="rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] h-full">
+                <router-view v-slot="{ Component }">
+                    <component :is="Component"></component>
+                </router-view>
+            </div>
+            
+        </main>
 
-    <nav class="fixed top-0 left-0">
-        <NavigationRail :open="open" :setOpen="setOpen" :togglePanel="togglePanel"></NavigationRail>
-    </nav>
+        <aside>
+
+        </aside>
+
+</div>
+
 </template>
 
 <script setup lang="ts">
