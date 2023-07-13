@@ -6,7 +6,7 @@
         <div class="relative flex h-full">
             <NavigationRail></NavigationRail>
             <main class="relative flex-grow mr-2">
-                <div class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 overflow-y-scroll" :style="mainAvalidHeight">
+                <div class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 md:p-8 overflow-y-scroll" :style="mainAvalidHeight">
                     <router-view v-slot="{ Component }">
                         <component :is="Component"></component>
                     </router-view>
