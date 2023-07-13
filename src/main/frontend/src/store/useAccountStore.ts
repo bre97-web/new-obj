@@ -8,7 +8,7 @@ const useAccountStore = defineStore('account_store', {
         user: {
             name: '',
             password: '',
-            phone: null as null | number
+            phone: ''
         },
     }),
     getters: {
@@ -16,7 +16,7 @@ const useAccountStore = defineStore('account_store', {
         getIsLogin: (s) => s.isLogin,
     },
     actions: {
-        async isExist(id: number) {
+        async isExist(id: string) {
             return await axios.get('/api/user/findOneById', {
                 params: {
                     u_id: id
@@ -24,7 +24,7 @@ const useAccountStore = defineStore('account_store', {
             })
         },
         async login({ u_id, u_pwd}:{
-            u_id: number,
+            u_id: string,
             u_pwd: string
         }) {
             let res = await axios.post('/api/user/login', {

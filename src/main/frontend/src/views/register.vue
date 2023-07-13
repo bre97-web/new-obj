@@ -10,7 +10,8 @@
                 <md-outlined-text-field 
                     :error="registerActive.isExists"
                     :supportingText="registerActive.isExists ? '账户已存在' : '账户可用'"
-                    v-model="user.get().u_id"
+                    v-model.number="user.get().u_id"
+                    type="number"
                     maxlength="11"
                     label="手机号"
                 >
@@ -76,7 +77,7 @@ const registerActive = reactive({
 watchEffect(() => {
     if (user.isValid(user.get().u_id)) {
         
-        account.isExist(user.get().u_id as number).then(res => {
+        account.isExist(user.get().u_id).then(res => {
             registerActive.isExists = res.data !== ''
         })
     }

@@ -23,7 +23,7 @@
                 </thead>
                 
                 <tbody class="bg-[var(--md-sys-color-surface-container-lowest)] rounded-xl space-y-4">
-                    <tr v-for="e in filter" :key="(e.u_id as number)">
+                    <tr v-for="e in filter" :key="e.u_id">
                         <td>{{ e.u_id }}</td>
                         <td>{{ e.u_name }}</td>
                         <td>{{ e.u_pwd }}</td>
