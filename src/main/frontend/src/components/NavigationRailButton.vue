@@ -6,7 +6,7 @@
         <md-ripple></md-ripple>
         <div
             class="flex items-center h-full rounded-xl"
-            :class="navStore.isOpen ? 'justify-start gap-2 pl-6' : 'justify-center'"
+            :class="navStore.isOpen ? 'justify-start gap-2 pl-4' : 'justify-center'"
         >
             <md-icon :class="{ 'text-[var(--md-sys-color-primary)]': router.currentRoute.value.path !== props.routerItem.path }">
                 {{ props.routerItem.icon }}
