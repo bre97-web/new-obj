@@ -1,14 +1,16 @@
 <template>
-    <nav class="px-4 border-b">
-        <nav class="h-14 flex items-center justify-end">
+    <nav class="flex flex-row justify-between px-4 bg-[var(--md-sys-color-background)]">
 
+        <Title></Title>
+        
+        <nav class="h-14 flex items-center justify-end">
             <Menu v-slot="{ open }">
                 <MenuButton as="template">
                     <md-standard-icon-button>
                         <md-icon>settings</md-icon>
                     </md-standard-icon-button>
                 </MenuButton>
-                <MenuItems v-show="open" class="absolute top-14 bg-white border rounded-md flex">
+                <MenuItems v-show="open" class="absolute top-14 border rounded-md flex">
                     <MenuItem>
                     </MenuItem>
                 </MenuItems>
@@ -17,9 +19,14 @@
     </nav>
 </template>
 
-<script setup lang="ts">
+<script setup lang="tsx">
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 
+const Title = () => (
+    <div>
+        <h1>记账小工具</h1>
+    </div>
+)
 </script>
 
 <style scoped></style>
