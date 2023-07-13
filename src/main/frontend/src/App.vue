@@ -4,7 +4,7 @@
             <TopNavigation></TopNavigation>
         </nav>
         <div class="relative flex h-full">
-            <NavigationRail :open="open" :setOpen="setOpen" :togglePanel="togglePanel"></NavigationRail>
+            <NavigationRail></NavigationRail>
             <main class="relative flex-grow mr-2">
                 <div class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 overflow-y-scroll" :style="mainAvalidHeight">
                     <router-view v-slot="{ Component }">
@@ -19,18 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import NavigationRail from './components/NavigationRail.vue'
 import TopNavigation from './components/TopNavigation.vue';
-
-const open = ref(false)
-const setOpen = (e: boolean) => {
-    open.value = e
-}
-const togglePanel = () => {
-    open.value = !open.value
-}
-
 
 /**
  * 控制main的元素高度

@@ -1,5 +1,6 @@
 <template>
     <nav class="flex flex-row items-center justify-between px-4 py-2 bg-[var(--md-sys-color-background)]">
+        <OpenNavigationRailButton></OpenNavigationRailButton>
 
         <Title></Title>
         
@@ -21,6 +22,7 @@
 
 <script setup lang="tsx">
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import OpenNavigationRailButton from './OpenNavigationRailButton.vue';
 
 const Title = () => (
     <div>
