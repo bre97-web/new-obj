@@ -1,6 +1,5 @@
-import { type } from "os";
 import { defineStore } from "pinia";
-import { onMounted, onUnmounted, reactive, ref, watch } from "vue";
+import { reactive, ref, watch } from "vue";
 
 type NavButton = {
     label: string,
