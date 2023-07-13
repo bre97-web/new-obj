@@ -1,6 +1,6 @@
 <template>
-    <nav class="relative bg-[var(--md-sys-color-surface)] h-full" :class="navStore.isOpen ? 'w-44' : 'w-20'">
-        <div class="relative flex flex-col justify-between px-3 pb-4 h-full">
+    <nav class="relative  h-full" :class="navStore.isOpen ? 'w-44' : 'w-20'">
+        <div class="relative flex flex-col justify-between px-3 pb-4 h-full bg-[var(--md-sys-color-surface)]">
             <div>
                 <ul class="relative flex flex-col gap-2 w-full">
                     <template v-for="e in routerList" :key="e.path">
