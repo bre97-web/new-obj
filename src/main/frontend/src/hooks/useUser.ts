@@ -1,13 +1,13 @@
 import { reactive } from "vue"
 
 type User = {
-    u_id: number,
+    u_id: number | null,
     u_name: string,
     u_pwd: string
 }
 type Users = User[]
 
-function useUser(id: number = 0, name: string = '', password: string = '') {
+function useUser(id: number | null = null, name: string = '', password: string = '') {
     const target: User = reactive({
         u_id: id,
         u_name: name,

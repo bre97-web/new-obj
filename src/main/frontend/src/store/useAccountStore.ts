@@ -8,7 +8,7 @@ const useAccountStore = defineStore('account_store', {
         user: {
             name: '',
             password: '',
-            phone: undefined as undefined | number
+            phone: null as null | number
         },
     }),
     getters: {

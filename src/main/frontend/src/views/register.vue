@@ -75,8 +75,9 @@ const registerActive = reactive({
 
 watchEffect(() => {
     if (user.isValid(user.get().u_id)) {
-        account.isExist(user.get().u_id).then(res => {
-            registerActive.isExists = res.data
+        
+        account.isExist(user.get().u_id as number).then(res => {
+            registerActive.isExists = res.data !== ''
         })
     }
 })
