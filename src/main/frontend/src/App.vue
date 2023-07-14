@@ -3,10 +3,10 @@
         <nav ref="topNavigationRef" class="sticky top-0 z-50 w-full">
             <TopNavigation></TopNavigation>
         </nav>
-        <div class="relative flex h-full">
+        <div class="relative flex" :style="mainAvalidHeight">
             <NavigationRail class="flex-none"></NavigationRail>
-            <main class="relative w-full mr-2">
-                <div class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 md:p-8 overflow-y-scroll" :style="mainAvalidHeight">
+            <main class="relative w-full mr-2 overflow-clip">
+                <div class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 md:p-8 overflow-scroll" :style="mainAvalidHeight">
                     <router-view v-slot="{ Component }">
                         <component :is="Component"></component>
                     </router-view>

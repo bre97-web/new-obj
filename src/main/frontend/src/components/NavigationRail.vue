@@ -8,16 +8,11 @@
                     </template>
                 </ul>
             </div>
-
-            <div>
-                <DarkSwitch></DarkSwitch>
-            </div>
         </div>
     </nav>
 </template>
 
 <script setup lang="tsx">
-import DarkSwitch from './DarkSwitch.vue';
 import { NavButton, useNavigationRailStore } from '@/store/useNavigationRail';
 import { onMounted, onUnmounted } from 'vue';
 import NavigationRailButton from '@/components/NavigationRailButton.vue'
@@ -53,22 +48,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-nav,
-li {
+nav {
     transition: all 0.15s;
-}
-li h1 {
-    animation: opacityFromZeroToFull 0.5s;
-    opacity: 1;
-}
-@keyframes opacityFromZeroToFull {
-    from {
-        opacity: 0;
-    } to {
-        opacity: 1;
-    }
-}
-* {
-    @apply select-none;
 }
 </style>

@@ -12,8 +12,6 @@
 
             <UserListChips :seach-keyword="search.keyword" :set-seach-keyword="setSeachKeyword"></UserListChips>
 
-            {{ search.keyword }}
-
             <table class="rounded-xl border overflow-clip w-full">
                 <thead class="bg-[var(--md-sys-color-surface-container-lowest)] border-b border-[var(--md-sys-color-outline)]">
                     <tr class="font-semibold">
