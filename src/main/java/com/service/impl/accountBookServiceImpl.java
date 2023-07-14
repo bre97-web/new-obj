@@ -19,4 +19,16 @@ public class accountBookServiceImpl implements accountBookService {
     public List<accountBook> getall() {
         return accountBookMapper.getall();
     }
+
+    @Override
+    public List<accountBook> getUserAll(int u_id) {
+        return accountBookMapper.getUserAll(u_id);
+        }
+
+    @Override
+    public boolean pushOne(accountBook accountBook) {
+        boolean flag= accountBookMapper.pushOne(accountBook)>0;
+        sqlSession.commit();
+        return flag;
+    }
 }
