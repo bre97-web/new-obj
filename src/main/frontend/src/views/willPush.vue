@@ -9,17 +9,17 @@
             <section>
                 <Headline msg="记账单"></Headline>
                 <div class="space-y-8 mt-8">
-                    <div class="card">
+                    <div class="card bg-[var(--md-coclor-surface)]">
                         <!-- 表头 -->
-                        <div class="max-w-md">
+                        <div class="max-w-md bg-[var(--md-sys-color-surface-container-low)]">
                             <div>
                                 <h1 class="font-bold">Time</h1>
                                 <md-divider></md-divider>
                             </div>
                         </div>
                         <!-- 单条记录 -->
-                        <div class="max-w-md">
-                            <div class="bg-blue-200 rounded-xl px-4 py-2">
+                        <div class="max-w-md ">
+                            <div class="bg-[var(--md-sys-color-surface-container-low)] rounded-xl px-4 py-2">
                                 <div class="flex items-center justify-between">
                                     <!-- Avatar aboue-->
                                     <div class="flex gap-2">
@@ -37,8 +37,8 @@
                             </div>
                         </div>
                         <!-- 单条记录 -->
-                        <div class="max-w-md">
-                            <div class="bg-blue-200 rounded-xl px-4 py-2">
+                        <div class="max-w-md ">
+                            <div class="bg-[var(--md-sys-color-surface-container-low)] rounded-xl px-4 py-2">
                                 <div class="flex items-center justify-between">
                                     <!-- Avatar aboue-->
                                     <div class="flex gap-2">
@@ -57,13 +57,13 @@
                         </div>
                     </div>
                     
-                    <div class="card">
+                    <div class="card bg-[var(--md-coclor-surface)] ">
                         <div class="flex flex-col gap-4 max-w-md">
                             <div class="flex items-center justify-between gap-2 h-16">
-                                <div class="rounded-xl bg-blue-100 hover:bg-blue-200 active:bg-blue-300 focus:bg-blue-500 flex items-center justify-center w-full h-full">
+                                <div class="rounded-xl bg-[var(--md-sys-color-surface-container-low)] text-[var(--md-sys-color-on-surface)] hover:bg-[var(--md-sys-color-surface-container)] active:bg-[var(--md-sys-color-primary-container)] flex items-center justify-center w-full h-full">
                                     <md-icon class="text-4xl font-[700]">arrow_downward</md-icon>
                                 </div>
-                                <div class="rounded-xl bg-red-100 hover:bg-red-200 active:bg-red-300 focus:bg-red-500 flex items-center justify-center w-full h-full">
+                                <div class="rounded-xl bg-[var(--md-sys-color-surface-container-low)] text-[var(--md-sys-color-on-surface)] hover:bg-[var(--md-sys-color-surface-container)] active:bg-[var(--md-sys-color-error-container)] flex items-center justify-center w-full h-full">
                                     <md-icon class="text-4xl font-[700]">arrow_upward</md-icon>
                                 </div>
                             </div>
