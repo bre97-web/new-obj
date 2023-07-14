@@ -57,6 +57,13 @@ const account = useAccountStore()
         needAdmin: false,
         needLogin: false,
     },
+    {
+        label: '实验室',
+        path: '/willpush',
+        icon: 'labs',
+        needAdmin: false,
+        needLogin: false,
+    },
 ]
 
 
