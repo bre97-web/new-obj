@@ -33,12 +33,7 @@ const useAccountStore = defineStore('account_store', {
                 u_pwd: u_pwd,
             })
             if(res.data !== '') {
-                this.setUser({
-                    u_id: res.data.u_id,
-                    u_name: res.data.u_name,
-                    u_pwd: res.data.u_pwd,
-                    isAdmin: res.data.isAdmin,
-                })
+                this.setUser(res.data)
                 return true
             }
             return false

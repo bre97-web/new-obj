@@ -4,7 +4,12 @@
             <TopNavigation></TopNavigation>
         </nav>
         <div class="relative flex" :style="mainAvalidHeight">
-            <NavigationRail class="flex-none"></NavigationRail>
+            <template v-if="account.getUser.isAdmin && account.isLogin">
+                <NavigationRail :router-list="routerList" class="flex-none"></NavigationRail>
+            </template>
+            <template v-else>
+                <NavigationRail :router-list="routerList.filter(e => !e.needAdmin)" class="flex-none"></NavigationRail>
+            </template>
             <main class="relative w-full mr-2 overflow-clip">
                 <div class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 md:p-8 overflow-scroll" :style="mainAvalidHeight">
                     <router-view v-slot="{ Component }">
@@ -22,6 +27,39 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import NavigationRail from './components/NavigationRail.vue'
 import TopNavigation from './components/TopNavigation.vue';
+import { NavButton } from './store/useNavigationRail';
+import { useAccountStore } from './store/useAccountStore';
+
+const account = useAccountStore()
+
+/**
+ * 用于NavigationRail按钮的路由表
+ */
+ const routerList: NavButton[] = [
+    {
+        label: '首页',
+        path: '/',
+        icon: 'home',
+        needAdmin: false,
+        needLogin: false,
+    },
+    {
+        label: '用户管理',
+        path: '/userlist',
+        icon: 'manage_accounts',
+        needAdmin: true,
+        needLogin: true,
+    },
+    {
+        label: '个人中心',
+        path: '/profile',
+        icon: 'person',
+        needAdmin: false,
+        needLogin: false,
+    },
+]
+
+
 
 /**
  * 控制main的元素高度
