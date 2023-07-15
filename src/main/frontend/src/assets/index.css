@@ -53,6 +53,10 @@
         @apply bg-[var(--md-sys-color-surface-container-low)] text-[var(--md-sys-color-on-surface)] outline-none rounded-xl px-4 py-2;
     }
 
+    .elevation {
+        --md-elevation-level: 2;
+        transition: all 0.15s;
+    }
     :root {
         --md-sys-color-background: #f7fbf2;
         --md-sys-color-on-background: #181d18;
