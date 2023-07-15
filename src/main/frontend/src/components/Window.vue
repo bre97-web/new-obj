@@ -1,25 +1,28 @@
 <template>
-    <div
-        v-show="props.isOpen"
-        class="overflow-scroll rounded-[16px] z-[999] p-2 bg-[var(--md-sys-color-surface-container-lowest)]"
-        :class="{
-            'fixed top-0 left-0 w-screen h-screen': state.isFullscreen,
-            'fixed right-2 bottom-2 w-auto h-2/3 shadow': !state.isFullscreen && props.fixed
-        }"
-    >
+    <Teleport to="#app">
         <div
-            class="relative"
+            v-show="props.isOpen"
+            class="overflow-scroll rounded-[16px] z-[999] p-2 bg-[var(--md-sys-color-surface-container-lowest)]"
+            :class="{
+                'fixed top-0 left-0 w-screen h-screen': state.isFullscreen,
+                'fixed right-2 bottom-2 w-auto h-2/3 shadow': !state.isFullscreen && props.fixed
+            }"
         >
-            <nav class="flex justify-end items-center gap-2 mb-2">
-                <template v-if="props.fullscreen">
-                    <ExitFullscreen v-if="state.isFullscreen"></ExitFullscreen>
-                    <Fullscreen v-else></Fullscreen>
-                </template>
-                <Close></Close>
-            </nav>
-            <slot></slot>
+            <div
+                class="relative"
+            >
+                <nav class="flex justify-end items-center gap-2 mb-2">
+                    <template v-if="props.fullscreen">
+                        <ExitFullscreen v-if="state.isFullscreen"></ExitFullscreen>
+                        <Fullscreen v-else></Fullscreen>
+                    </template>
+                    <Close></Close>
+                </nav>
+                <slot></slot>
+            </div>
         </div>
-    </div>
+    </Teleport>
+
 </template>
 
 <script setup lang="tsx">
