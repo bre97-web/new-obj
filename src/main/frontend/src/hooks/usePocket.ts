@@ -1,51 +1,54 @@
 import { useAccountStore } from "@/store/useAccountStore"
 import { useDate } from "./useDate"
 
-enum UseOfMoneyType {
-    shopping_cart = 0,
-    sports_esports,
-    toys_fan,
-    restaurant,
-    volunteer_activism,
-    family_restroom,
-}
+
+const UseOfMoneyTypeList: string[] = [
+    'shopping_cart',
+    'sports_esports',
+    'toys_fan',
+    'restaurant',
+    'volunteer_activism',
+    'family_restroom'
+]
+type UseOfMoneyType = string
 type UseOfMoneyTypes = UseOfMoneyType[]
 
 type PocketFlowType = '收入' | '支出'
+
 
 type Pocket = {
     u_id: string,
     szqk: PocketFlowType,
     money: string | number,
-    lx: UseOfMoneyTypes | null,
+    lx: UseOfMoneyTypes,
     bz: string,
     date: string,
 }
 
 function usePocket({
-    flowType = '收入',
+    szqk = '收入',
     money = '',
-    useOfMonkeyTypes = null,
-    desc = '',
-    date = useDate('mm-dd-yyyy')
+    lx = [],
+    bz = '',
+    date = useDate('MM-DD-yyyy')
 }: {
-    flowType?: PocketFlowType,
+    szqk?: PocketFlowType,
     money?: string | number,
-    useOfMonkeyTypes?: UseOfMoneyTypes | null,
-    desc?: string,
+    lx?: UseOfMoneyTypes,
+    bz?: string,
     date?: string,
 }) {
     const target: Pocket = {
         u_id: useAccountStore().getUser.phone,
-        szqk: flowType,
+        szqk: szqk,
         money: money,
-        lx: useOfMonkeyTypes,
-        bz: desc,
+        lx: lx,
+        bz: bz,
         date: date
     }
 
     return target
 }
 
-export type { Pocket, PocketFlowType, UseOfMoneyTypes }
-export { usePocket, UseOfMoneyType }
+export type { Pocket, PocketFlowType, UseOfMoneyTypes, UseOfMoneyType }
+export { usePocket, UseOfMoneyTypeList }

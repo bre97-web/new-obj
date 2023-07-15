@@ -11,9 +11,9 @@
                 <Tab as="md-tab">Pocket</Tab>
             </TabList>
             <TabPanels>
-                <TabPanel>1
+                <TabPanel>Developing
                 </TabPanel>
-                <TabPanel>2
+                <TabPanel>Developing too
                 </TabPanel>
             </TabPanels>
         </TabGroup>
