@@ -17,7 +17,6 @@ import { NavButton, useNavigationRailStore } from '@/store/useNavigationRail';
 import { onMounted, onUnmounted } from 'vue';
 import NavigationRailButton from '@/components/NavigationRailButton.vue'
 
-
 const props = defineProps<{
     routerList: NavButton[]
 }>()
