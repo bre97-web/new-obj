@@ -40,8 +40,6 @@ import { useAccountStore } from '@/store/useAccountStore';
 import { usePocketStore } from '@/store/usePocketStore';
 import { reactive, ref } from 'vue';
 
-
-
 const data = reactive({
     u_id: useAccountStore().getUser.phone,
     szqk: '收入' as PocketFlowType,
