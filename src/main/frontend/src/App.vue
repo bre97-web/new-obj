@@ -9,7 +9,7 @@
                         <Subtitle></Subtitle>
                     </section>
                 </template>
-                <DarkSwitch></DarkSwitch>
+                <SettingIconButton @click="isOpenAsidePanel.set(!isOpenAsidePanel.get())"></SettingIconButton>
             </TopNavigation>
         </nav>
         <div class="relative flex" :style="mainAvalidHeight">
@@ -27,9 +27,9 @@
             </main>
 
             <!-- Right Content Panel -->
-            <aside class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 mr-2 overflow-scroll" :style="mainAvalidHeight">
-                1
-            </aside>
+            <AsideWindow :is-open="isOpenAsidePanel.get()" :set-is-open="isOpenAsidePanel.set" :style="mainAvalidHeight">
+                <SettingsContent></SettingsContent>
+            </AsideWindow> 
         </div>
     </div>
 </template>
@@ -44,6 +44,9 @@ import { useAccountStore } from './store/useAccountStore';
 import NavigationRailButton from './components/NavigationRailButton.vue';
 import DarkSwitch from '@/components/DarkSwitch.vue'
 import { Title, Subtitle } from '@/components/Title'
+import { SettingIconButton } from './components/SettingIconButton';
+import { useState } from './hooks/useState';
+import AsideWindow from '@/components/AsideWindow.vue'
 
 const account = useAccountStore()
 
@@ -89,6 +92,14 @@ const LeftNavigationRail = () => (
                 routerList.filter(e => !e.needAdmin).map(e => <NavigationRailButton key={e.path} routerItem={e}></NavigationRailButton>)
         }
         </NavigationRail>
+    </div>
+)
+
+
+const isOpenAsidePanel = useState(false)
+const SettingsContent = () => (
+    <div>
+        <DarkSwitch></DarkSwitch>
     </div>
 )
 
