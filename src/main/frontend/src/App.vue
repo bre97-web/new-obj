@@ -41,7 +41,7 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 import OpenNavigationRailButton from '@/components/OpenNavigationRailButton.vue';
 import NavigationRail from './components/NavigationRail.vue'
 import TopNavigation from './components/TopNavigation.vue';
-import { NavButton } from './store/useNavigationRail';
+import { NavButton, useNavigationRailStore } from './store/useNavigationRail';
 import { useAccountStore } from './store/useAccountStore';
 import NavigationRailButton from './components/NavigationRailButton.vue';
 import DarkSwitch from '@/components/DarkSwitch.vue'
@@ -86,7 +86,12 @@ const account = useAccountStore()
     },
 ]
 const LeftNavigationRail = () => (
-    <div>
+    <div
+        class={[
+            useNavigationRailStore().isOpen ? 'z-[999]' : '',
+            "fixed mt-[72px] md:mt-0 md:relative left-0 top-0 h-screen"
+        ]}
+    >
         <NavigationRail class="flex-none">
         {
             account.getUser.isAdmin && account.isLogin ?
