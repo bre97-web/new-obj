@@ -17,10 +17,10 @@
         <div class="relative flex" :style="mainAvalidHeight">
 
             <!-- Left NavRail -->
-            <LeftNavigationRail></LeftNavigationRail>
+            <LeftNavigationRail class=""></LeftNavigationRail>
 
             <!-- Content -->
-            <main class="relative w-full mr-2 overflow-clip">
+            <main class="relative w-full ml-2 md:ml-0 mr-2 overflow-clip">
                 <div class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 md:p-8 overflow-scroll" :style="mainAvalidHeight">
                     <router-view v-slot="{ Component }">
                         <component :is="Component"></component>
@@ -88,8 +88,8 @@ const account = useAccountStore()
 const LeftNavigationRail = () => (
     <div
         class={[
-            useNavigationRailStore().isOpen ? 'z-[999]' : '',
-            "fixed mt-[72px] md:mt-0 md:relative left-0 top-0 h-screen"
+            useNavigationRailStore().isOpen ? 'translate-x-0' : '-translate-x-full',
+            "transition fixed mt-[72px] md:mt-0 md:relative top-0 md:translate-x-0 md:left-auto h-screen z-50"
         ]}
     >
         <NavigationRail class="flex-none">

@@ -141,6 +141,9 @@
     .rotate {
         animation: rotateAnimate 4s infinite linear;
     }
+    .transition {
+        transition: all 0.15s;;
+    }
     
 }
 
