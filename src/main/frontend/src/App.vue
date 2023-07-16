@@ -131,5 +131,3 @@ const mainAvalidHeight = computed(() => {
     return 'height:' + (innerHeight.value - topNavigationRef.value.clientHeight - 16) + 'px'
 })
 </script>
-
-<style scoped></style>

@@ -1,14 +1,16 @@
 <template>
-    <aside v-show="props.isOpen" class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 mr-2 overflow-scroll w-64 max-w-screen-sm">
-        <div
-            class="relative"
-        >
-            <nav class="flex justify-end items-center gap-2 mb-2">
-                <Close></Close>
-            </nav>
-            <slot></slot>
-        </div>
-    </aside>
+    <Transition>
+        <aside v-show="props.isOpen" class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 mr-2 overflow-scroll w-64 max-w-screen-sm">
+            <div
+                class="relative"
+            >
+                <nav class="flex justify-end items-center gap-2 mb-2">
+                    <Close></Close>
+                </nav>
+                <slot></slot>
+            </div>
+        </aside>
+    </Transition>
 </template>
 
 <script setup lang="tsx">
@@ -27,5 +29,13 @@ const Close = () => <NavButton icon="close" clickFn={() => props.setIsOpen(false
 </script>
 
 <style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.15s ease;
+}
 
+.v-leave-to,
+.v-enter-from {
+  @apply opacity-0 translate-x-full;
+}
 </style>
