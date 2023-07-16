@@ -1,7 +1,16 @@
 <template>
     <div class="relative flex flex-col w-full bg-[var(--md-sys-color-background)] h-screen max-h-screen">
         <nav ref="topNavigationRef" class="sticky top-0 z-50 w-full">
-            <TopNavigation></TopNavigation>
+            <TopNavigation>
+                <template #header>
+                    <OpenNavigationRailButton></OpenNavigationRailButton>
+                    <section>
+                        <Title></Title>
+                        <Subtitle></Subtitle>
+                    </section>
+                </template>
+                <DarkSwitch></DarkSwitch>
+            </TopNavigation>
         </nav>
         <div class="relative flex" :style="mainAvalidHeight">
 
@@ -27,11 +36,14 @@
 
 <script setup lang="tsx">
 import { computed, onMounted, onUnmounted, ref } from 'vue';
+import OpenNavigationRailButton from '@/components/OpenNavigationRailButton.vue';
 import NavigationRail from './components/NavigationRail.vue'
 import TopNavigation from './components/TopNavigation.vue';
 import { NavButton } from './store/useNavigationRail';
 import { useAccountStore } from './store/useAccountStore';
 import NavigationRailButton from './components/NavigationRailButton.vue';
+import DarkSwitch from '@/components/DarkSwitch.vue'
+import { Title, Subtitle } from '@/components/Title'
 
 const account = useAccountStore()
 
