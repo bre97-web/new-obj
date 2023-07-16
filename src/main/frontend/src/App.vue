@@ -9,6 +9,8 @@
                         <Subtitle></Subtitle>
                     </section>
                 </template>
+
+                <!-- Open ASIDE PANEL -->
                 <SettingIconButton @click="isOpenAsidePanel.set(!isOpenAsidePanel.get())"></SettingIconButton>
             </TopNavigation>
         </nav>
@@ -26,7 +28,7 @@
                 </div>
             </main>
 
-            <!-- Right Content Panel -->
+            <!-- Right Content ASIDE PANEL -->
             <AsideWindow :is-open="isOpenAsidePanel.get()" :set-is-open="isOpenAsidePanel.set" :style="mainAvalidHeight">
                 <SettingsContent></SettingsContent>
             </AsideWindow> 
@@ -99,7 +101,11 @@ const LeftNavigationRail = () => (
 const isOpenAsidePanel = useState(false)
 const SettingsContent = () => (
     <div>
-        <DarkSwitch></DarkSwitch>
+        <label>
+            <p>深色模式</p>
+            <DarkSwitch></DarkSwitch>
+        </label>
+
     </div>
 )
 

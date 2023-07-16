@@ -1,28 +1,19 @@
 <template>
-    <md-standard-icon-button @click="toggleDark">
-        <template v-if="!isDark">
-            <md-icon>light_mode</md-icon>
-        </template>
-        <template v-else>
-            <md-icon>dark_mode</md-icon>
-        </template>
+    <md-standard-icon-button @click="theme.toggleDark">
+        <md-icon>{{ theme.theme.isDark ? 'dark_mode' : 'light_mode'" }}</md-icon>
     </md-standard-icon-button>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { useThemeStore } from '@/store/useThemeStore';
+import { ref, onMounted } from 'vue';
 
+const theme = useThemeStore()
 
-const isDark = ref(false)
-const setDark = (e: boolean) => {
-    isDark.value = e
-}
-const toggleDark = () => {
-    setDark(!isDark.value)
-}
+const switchRef = ref()
 
-watch(isDark, () => {
-    document.documentElement.classList[isDark.value ? 'add': 'remove']('dark')
+onMounted(() => {
+    switchRef.value.selected = theme.theme.isDark
 })
 </script>
 

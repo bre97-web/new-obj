@@ -1,23 +1,17 @@
 <template>
-    <md-switch @click="toggleDark">
-    </md-switch>
+    <md-switch ref="switchRef" @click="theme.toggleDark"></md-switch>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue';
+import { useThemeStore } from '@/store/useThemeStore';
+import { onMounted, ref } from 'vue';
 
-const isDark = ref(false)
-const setDark = (e: boolean) => {
-    isDark.value = e
-}
-const toggleDark = () => {
-    setDark(!isDark.value)
-}
+const theme = useThemeStore()
+
+const switchRef = ref()
+
 onMounted(() => {
-
-})
-watch(isDark, () => {
-    document.documentElement.classList[isDark.value ? 'add': 'remove']('dark')
+    switchRef.value.selected = theme.theme.isDark
 })
 </script>
 

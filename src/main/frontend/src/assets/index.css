@@ -21,6 +21,10 @@
         @apply flex flex-col gap-2 max-w-md;
     }
 
+    label {
+        @apply flex items-center justify-between;
+    }
+
     h1,
     h2,
     h3,

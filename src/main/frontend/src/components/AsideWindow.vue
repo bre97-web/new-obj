@@ -1,5 +1,5 @@
 <template>
-    <aside v-show="props.isOpen" class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 mr-2 overflow-scroll">
+    <aside v-show="props.isOpen" class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 mr-2 overflow-scroll w-64 max-w-screen-sm">
         <div
             class="relative"
         >
