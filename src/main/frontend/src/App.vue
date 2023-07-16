@@ -5,10 +5,14 @@
         </nav>
         <div class="relative flex" :style="mainAvalidHeight">
             <template v-if="account.getUser.isAdmin && account.isLogin">
-                <NavigationRail :router-list="routerList" class="flex-none"></NavigationRail>
+                <NavigationRail :router-list="routerList" class="flex-none">
+                    <NavigationRailButton v-for="e in routerList" :key="e.path" :router-item="e"></NavigationRailButton>
+                </NavigationRail>
             </template>
             <template v-else>
-                <NavigationRail :router-list="routerList.filter(e => !e.needAdmin)" class="flex-none"></NavigationRail>
+                <NavigationRail :router-list="routerList.filter(e => !e.needAdmin)" class="flex-none">
+                    <NavigationRailButton v-for="e in routerList.filter(e => !e.needAdmin)" :key="e.path" :router-item="e"></NavigationRailButton>
+                </NavigationRail>
             </template>
             <main class="relative w-full mr-2 overflow-clip">
                 <div class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 md:p-8 overflow-scroll" :style="mainAvalidHeight">
@@ -29,6 +33,7 @@ import NavigationRail from './components/NavigationRail.vue'
 import TopNavigation from './components/TopNavigation.vue';
 import { NavButton } from './store/useNavigationRail';
 import { useAccountStore } from './store/useAccountStore';
+import NavigationRailButton from './components/NavigationRailButton.vue';
 
 const account = useAccountStore()
 
