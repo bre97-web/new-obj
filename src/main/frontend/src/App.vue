@@ -4,30 +4,28 @@
             <TopNavigation></TopNavigation>
         </nav>
         <div class="relative flex" :style="mainAvalidHeight">
-            <template v-if="account.getUser.isAdmin && account.isLogin">
-                <NavigationRail :router-list="routerList" class="flex-none">
-                    <NavigationRailButton v-for="e in routerList" :key="e.path" :router-item="e"></NavigationRailButton>
-                </NavigationRail>
-            </template>
-            <template v-else>
-                <NavigationRail :router-list="routerList.filter(e => !e.needAdmin)" class="flex-none">
-                    <NavigationRailButton v-for="e in routerList.filter(e => !e.needAdmin)" :key="e.path" :router-item="e"></NavigationRailButton>
-                </NavigationRail>
-            </template>
+
+            <!-- Left NavRail -->
+            <LeftNavigationRail></LeftNavigationRail>
+
+            <!-- Content -->
             <main class="relative w-full mr-2 overflow-clip">
                 <div class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 md:p-8 overflow-scroll" :style="mainAvalidHeight">
                     <router-view v-slot="{ Component }">
                         <component :is="Component"></component>
                     </router-view>
                 </div>
-                <footer></footer>
             </main>
-            <aside></aside>
+
+            <!-- Right Content Panel -->
+            <aside class="relative rounded-3xl bg-[var(--md-sys-color-surface-container-lowest)] p-4 mr-2 overflow-scroll" :style="mainAvalidHeight">
+                1
+            </aside>
         </div>
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="tsx">
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import NavigationRail from './components/NavigationRail.vue'
 import TopNavigation from './components/TopNavigation.vue';
@@ -70,7 +68,17 @@ const account = useAccountStore()
         needLogin: false,
     },
 ]
-
+const LeftNavigationRail = () => (
+    <div>
+        <NavigationRail class="flex-none">
+        {
+            account.getUser.isAdmin && account.isLogin ?
+                routerList.map(e => <NavigationRailButton key={e.path} routerItem={e}></NavigationRailButton>) : 
+                routerList.filter(e => !e.needAdmin).map(e => <NavigationRailButton key={e.path} routerItem={e}></NavigationRailButton>)
+        }
+        </NavigationRail>
+    </div>
+)
 
 
 /**
